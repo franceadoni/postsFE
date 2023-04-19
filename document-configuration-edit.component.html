@@ -1,0 +1,38 @@
+<h3>Insert or update</h3>
+
+<form [formGroup]="documentConfigurationForm" (ngSubmit)="onSubmit()" >
+  <div>
+    <div class="input-group mb-3">
+      <input name="name" formControlName="name" placeholder="name" id="name" type="text"/>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+       <tr>
+         <th>Type</th>
+         <th>File Name</th>
+       </tr>
+      </thead>
+      <tbody>
+        <ng-container formArrayName="documentUsages">
+          <ng-container *ngFor="let usageType of documentUsages.controls; index as i">
+            <tr [formGroupName]="i">
+              <td>
+                {{usageType.value.type}}
+              </td>
+              <td>
+                <select formControlName="documentId">
+                  <option *ngFor="let document of documents" [value]="document.id">{{document.name}}</option>
+                </select>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-secondary">Submit</button>
+  </div>
+</form>
+
+
