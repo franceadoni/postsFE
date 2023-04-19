@@ -1,0 +1,26 @@
+
+ <form #f="ngForm" (submit)="savePost.emit(f)">
+  <div class="d-flex align-items-center">
+    <div>
+    <div class="form-group">
+        <label for="nome">Title</label>
+        <input type="text" class="form-control" name="title" [ngModel]="active.title" id="title" placeholder="Insert Title">
+    </div>
+    <div class="form-group">
+        <label for="description">Author</label>
+        <input type="text" class="form-control" name="author" [ngModel]="active.author" id="author" placeholder="Insert Author">
+    </div>
+
+        <input type="number" class="form-control" name="category_id" [ngModel]="active.category_id" id="category_id" placeholder="Insert Category ID">
+
+  </div>
+    <div class="mt-3 ms-5">
+     <span> <button class="btn btn-dark me-3" type="submit" data-toggle="modal" data-target="#exampleModal">{{active.id ? 'Update':'Add'}}</button></span>
+      <span *ngIf="active.id">
+        <button type="button" class="btn btn-dark" (click)="resetActive.emit(f)">Cancel</button>
+      </span>
+    </div>
+   </div>
+  </form>
+
+

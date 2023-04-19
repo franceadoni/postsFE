@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categoriesStore.categories, index as i">
+            <td>{{i + 1}}</td>
+            <td>{{category.title}}</td>
+        </tr>
+    </tbody>
+</table>

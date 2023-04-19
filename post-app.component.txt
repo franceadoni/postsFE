@@ -1,0 +1,7 @@
+<div style="background-color: #d8bfd8; width: 1200;">
+  <div class="container-sm mt-3" style="width: 1100px">
+    <app-header></app-header>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+  </div>
+</div>

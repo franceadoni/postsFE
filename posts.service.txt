@@ -1,0 +1,45 @@
+import { Injectable } from '@angular/core';
+import { MarcheStore } from './marche.store';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Marca } from 'src/app/core/marca.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostsService {
+
+  constructor(
+    public postsStore: PostsStore,
+    private httpClient: HttpClient
+  ) { }
+
+  loadAll() {
+    const url = environment.baseUrl + "/api/posts";
+    this.httpClient.get<Post[]>(url).subscribe(p => this.postsStore.loadAll(p));
+  }
+
+  delete(post: Post) {
+    const url = environment.baseUrl + "/api/posts/" + post.id;
+    this.httpClient.delete<any>(url).subscribe(() => this.postsStore.delete(post));
+  }
+
+  updatePost(Post: Post) {
+    const url = environment.baseUrl + "/api/posts/" + this.postsStore.active.id;
+    this.httpClient.put<Post>(url, post).subscribe(p => this.postsStore.update(p));
+  }
+
+  addPost(post: Post) {
+    const url = environment.baseUrl + "/api/posts";
+    this.httpClient.post<Post>(url, post).subscribe(p => this.postsStore.add(p));
+  }
+
+  setActive(post: Post) {
+    this.postsStore.setActive(post);
+  }
+
+  resetActive() {
+    this.postsStore.resetActive();
+  }
+
+}

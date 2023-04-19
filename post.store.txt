@@ -1,0 +1,37 @@
+import { Injectable } from "@angular/core";
+import { Marca } from "src/app/core/marca.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class PostsStore {
+
+  post: Post[] = []
+  active: Post = {} as Post
+
+  loadAll(posts: Post[]) {
+    this.posts = posts;
+  }
+
+  delete(post: Post) {
+    this.posts = this.posts.filter(p => p.id !== post.id);
+  }
+
+  update(post: Posts) {
+    this.posts = this.posts.map(p => p.id === post.id ? post : p);
+  }
+
+  add(post: Post) {
+    this.posts = [...this.posts, post];
+  }
+
+  setActive(post: Post) {
+    this.active = post;
+  }
+
+  resetActive() {
+    this.active = {} as Post;
+  }
+
+}
