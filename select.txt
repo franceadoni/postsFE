@@ -1,0 +1,23 @@
+<form #f="ngForm" (submit)="saveModello.emit(f)">
+  <div class="d-flex align-items-center">
+    <div>
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" name="nome" [ngModel]="active.nome" id="nome" placeholder="Insert Name">
+    </div>
+
+    <div class="form-group">
+    <select class="form-select" title="marca" name="marca" [(ngModel)]="this.active.marca" >
+      <option *ngFor="let marca of this.marche" [ngValue]="marca">{{marca.nome}}</option>
+  </select>
+    </div>
+  </div>
+
+    <div class="mt-3 ms-5">
+     <span> <button class="btn btn-dark me-3" type="submit" data-toggle="modal" data-target="#exampleModal">{{active.id ? 'Update':'Add'}}</button></span>
+      <span *ngIf="active.id">
+        <button type="button" class="btn btn-dark" (click)="resetActive.emit(f)">Cancel</button>
+      </span>
+    </div>
+   </div>
+  </form>
